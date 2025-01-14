@@ -35,7 +35,7 @@ const LogInPage: React.FC = () => {
         <div className="flex items-center mb-2">
           <h2 className="text-lg mr-2"
           >
-            Don't have an account?
+            Don&apos;t have an account? 
           </h2>
           <button 
           className="text-titlecolor text-lg" 
