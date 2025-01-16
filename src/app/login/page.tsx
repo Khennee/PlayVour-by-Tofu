@@ -11,6 +11,10 @@ const LogInPage: React.FC = () => {
     navigate.push("/signup");
   };
 
+  const handleSubmitButton = () => { 
+    navigate.push("/landingpage")
+  }
+
   return (
     <div className="flex flex-col items-center bg-bgcolor min-h-screen p-8 carter-one-font">
 
@@ -65,7 +69,10 @@ const LogInPage: React.FC = () => {
 
       </div>
 
-      <button className="mt-12 bg-titlecolor bg-opacity-100 pl-10 pr-10 p-4 rounded text-bgcolor">
+      <button 
+    className="mt-12 bg-titlecolor bg-opacity-100 pl-10 pr-10 p-4 rounded text-bgcolor"
+      onClick={ handleSubmitButton }
+      >
         Confirm
       </button>
 
