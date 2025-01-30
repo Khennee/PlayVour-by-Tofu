@@ -1,4 +1,4 @@
-"use client"; // Add this directive for client-side components
+"use client"; 
 
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -12,7 +12,7 @@ const LogInPage: React.FC = () => {
   };
 
   const handleSubmitButton = () => { 
-    navigate.push("/landingpage")
+    navigate.push("/home")
   }
 
   return (
