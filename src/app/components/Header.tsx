@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 
 const Header = () => { 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const totalImages = 4; 
+    const [currentIndices, setCurrentIndices] = useState([0, 1, 2]);
     const modalRef = useRef<HTMLDivElement | null>(null); 
     const navigate = useRouter();
 
@@ -16,16 +18,27 @@ const Header = () => {
     };
 
     const handleVoucherButton = () => { 
-        navigate.push("/vouchers")
-    }
+        navigate.push("/vouchers");
+    };
 
     const handleHomeButton = () => { 
-        navigate.push("/home")
-    }
+        navigate.push("/home");
+    };
 
     const handleLogOutButton = () => { 
-        navigate.push("/login")
-    }
+        navigate.push("/login");
+    };
+
+    
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndices(prevIndices =>
+                prevIndices.map(index => (index + 1) % totalImages)
+            );
+        }, 5000); 
+
+        return () => clearInterval(interval); 
+    }, [totalImages]);
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -45,13 +58,10 @@ const Header = () => {
         <div>
             <div className="mb-4 mt-4 w-full px-4">
                 <div className="flex flex-row items-center justify-start w-full space-x-4">
-                    {[1, 2, 3].map((_, index) => (
-                        <div
-                            key={index}
-                            className="border border-gray-300 rounded-lg shadow-sm flex-1"
-                        >
+                    {currentIndices.map((index, i) => (
+                        <div key={i} className="border border-gray-300 rounded-lg shadow-sm flex-1">
                             <Image
-                                src={`/images/photo1.png`}
+                                src={`/images/photo${index + 1}.png`}
                                 alt={`Image ${index + 1}`}
                                 width={300}
                                 height={300}
@@ -76,7 +86,7 @@ const Header = () => {
                 <div 
                     className="flex items-center text-3xl cursor-pointer"
                     onClick={ handleHomeButton}
-                    >
+                >
                     <h1 className="text-titlecolor">
                         Play
                     </h1>
@@ -88,7 +98,7 @@ const Header = () => {
                 <h1 className="text-right relative">
                     <img
                         src="/images/profile.png"
-                        alt=""
+                        alt="profile"
                         className="w-8 h-8 rounded-full cursor-pointer"
                         onClick={toggleModal}
                     />
@@ -111,7 +121,7 @@ const Header = () => {
                                 <li 
                                     className="cursor-pointer hover:text-red-500"
                                     onClick={ handleLogOutButton }
-                                    >
+                                >
                                     Log Out
                                 </li>
                             </ul>
