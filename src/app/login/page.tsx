@@ -3,6 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import GoogleBtn from "../components/GoogleBtn";
+import AboutButton from "../components/AboutBtn";
 
 const LogInPage: React.FC = () => {
   const navigate = useRouter();
@@ -12,7 +13,7 @@ const LogInPage: React.FC = () => {
   };
 
   const handleSubmitButton = () => { 
-    navigate.push("/home")
+    navigate.push("/home");
   }
 
   return (
@@ -89,6 +90,10 @@ const LogInPage: React.FC = () => {
       <div className="mt-8">
         <GoogleBtn />
       </div>
+
+     <div>
+       <AboutButton/>
+     </div>
 
     </div>
   );
